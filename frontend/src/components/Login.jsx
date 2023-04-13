@@ -30,10 +30,10 @@ function Home() {
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail"></Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email id</Form.Label>
+          <Form.Label>UserId or Email</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter Your Email ID"
+            placeholder="Enter Your UserId"
             onChange={(e) => seteMaildId(e.target.value)}
           />
         </Form.Group>
@@ -47,7 +47,7 @@ function Home() {
         </Form.Group>
 
         <Button variant="primary" type="submit">
-          Register
+          Login
         </Button>
       </Form>
     </Container>

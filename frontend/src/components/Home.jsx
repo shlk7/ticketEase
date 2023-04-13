@@ -21,6 +21,12 @@ function Home() {
     navigate(`/Signup`);
   };
 
+  const loginHandler = (e) => {
+    e.preventDefault();
+    // alert("Clicked!");
+    navigate(`/Login`);
+  };
+
   return (
     <div>
       This is Home Page
@@ -44,6 +50,13 @@ function Home() {
         onClick={signupHandler}
       >
         Signup
+      </button>
+      <button
+        type="button"
+        className="list-group-item list-group-item-action active"
+        onClick={loginHandler}
+      >
+        Login
       </button>
     </div>
   );

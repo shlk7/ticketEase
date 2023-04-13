@@ -9,6 +9,7 @@ import Successful from './components/Successful';
 import TicketDetails from './components/TicketDetails';
 import CheckTicket from "./components/CheckTicket";
 import Signup from "./components/Signup";
+import Login from "./components/Login";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/ticketDetails/:pnr" element={<TicketDetails />} />
         <Route path="/checkTicket" element={<CheckTicket />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/Login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
