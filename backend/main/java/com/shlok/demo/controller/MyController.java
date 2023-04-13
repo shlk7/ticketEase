@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shlok.demo.entities.Tickets;
 import com.shlok.demo.entities.Trains;
+import com.shlok.demo.entities.Users;
 import com.shlok.demo.services.ticketService;
 import com.shlok.demo.services.trainServices;
+import com.shlok.demo.services.userService;
 
 @RestController
 public class MyController {
@@ -63,6 +65,29 @@ public class MyController {
 	@PostMapping("/addTicket")
 	public Tickets addTickets(@RequestBody Tickets ts) {
 		return this.ticketSer.addTickets(ts);
+	}
+	
+	
+	// user routes
+	
+	@Autowired
+	private userService user;
+	
+	@GetMapping("/user")
+	public List<Users> getUsers() {
+		return this.user.getUsers();
+	}
+	
+	@GetMapping("/user/{uId}")
+	public Users getUser(@PathVariable long uId) {
+		return this.user.getUser(uId);
+	}
+	
+	
+	@PostMapping("/addUser")
+	public Users addUser(@RequestBody Users us) {
+		System.out.println(us);
+		return this.user.addUser(us);
 	}
 
 }
