@@ -15,6 +15,12 @@ function Home() {
     navigate(`/checkTicket`);
   };
 
+  const signupHandler = (e) => {
+    e.preventDefault();
+    // alert("Clicked!");
+    navigate(`/Signup`);
+  };
+
   return (
     <div>
       This is Home Page
@@ -31,6 +37,13 @@ function Home() {
         onClick={checkHandler}
       >
         Check Ticket
+      </button>
+      <button
+        type="button"
+        className="list-group-item list-group-item-action active"
+        onClick={signupHandler}
+      >
+        Signup
       </button>
     </div>
   );

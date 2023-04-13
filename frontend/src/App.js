@@ -1,3 +1,4 @@
+import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './components/Home';
 import ListingsDetails from './components/ListingsDetails';
@@ -5,9 +6,10 @@ import OneDetail from "./components/OneDetails";
 import AddDetail from "./components/AddDetails";
 import BookTicket from "./components/BookTicket";
 import Successful from './components/Successful';
-import './App.css';
 import TicketDetails from './components/TicketDetails';
 import CheckTicket from "./components/CheckTicket";
+import Signup from "./components/Signup";
+
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
         <Route path="/successful/:pnr" element={<Successful />} />
         <Route path="/ticketDetails/:pnr" element={<TicketDetails />} />
         <Route path="/checkTicket" element={<CheckTicket />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );
