@@ -25,7 +25,7 @@ function App() {
         <Route path="/ticketDetails/:pnr" element={<TicketDetails />} />
         <Route path="/checkTicket" element={<CheckTicket />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

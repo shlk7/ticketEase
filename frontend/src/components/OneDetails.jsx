@@ -28,19 +28,28 @@ function OneDetail(props) {
   }, [id]);
 
   return (
-    <div>
-      <p>{data.id}</p>
-      <p>{data.name}</p>
-      <p>{data.fromwhere}</p>
-      <p>{data.whereto}</p>
-      <p>Available Tickets:{data.availability}</p>
-      { data.availability > 0 && (<button
-        type="button"
-        className="list-group-item list-group-item-action active"
-        onClick={clickHandler}
-      >
-        Book Ticket
-      </button>) }
+    <div
+      className="mx-auto card text-info bg-dark mb-3"
+      style={{ width: "18rem", marginTop: "20rem" }}
+    >
+      <div className="card-body text-center">
+        <p>Train Number:{data.id}</p>
+        <p>Name:{data.name}</p>
+        <p>From:{data.fromwhere}</p>
+        <p>Where:{data.whereto}</p>
+        <p>Available Tickets:{data.availability}</p>
+        {data.availability > 0 && (
+          <div className="text-center">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={clickHandler}
+            >
+              Book Ticket
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -14,19 +14,24 @@ function Home() {
   };
 
   return (
-    <Container>
+    <Container
+      className="mx-auto card text-info bg-dark mb-3"
+      style={{ width: "18rem", marginTop: "20rem" }}
+    >
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlid="formBasicEmail">
-          <Form.Label>pnr</Form.Label>
+          <Form.Label>Enter PNR No.</Form.Label>
           <Form.Control
             type="number"
-            placeholder="Enter PNR"
+            placeholder="Enter your PNR No."
             onChange={(e) => setpnr(e.target.value)}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <div className="text-center">
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </div>
       </Form>
     </Container>
   );

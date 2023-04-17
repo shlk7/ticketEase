@@ -5,6 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #13bcde !important;
+  /* background-image: linear-gradient(180deg, rgb(78, 85, 226), #2ccddc); */
+  background-image: url('../public/Images/bck4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 70vh;
+  opacity: 0.8;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 code {

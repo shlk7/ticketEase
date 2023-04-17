@@ -20,11 +20,16 @@ function TicketDetails(props) {
   }, [pnr]);
 
   return (
-    <div>
+    <div
+      className="mx-auto card text-info bg-dark mb-3"
+      style={{ width: "18rem", marginTop: "20rem" }}
+    >
+      <div className="card-body text-center">
       <p>PNR:{data.pnr}</p>
       <p>Name: {data.personName}</p>
       <p>Mobile Number: {data.personNumber}</p>
       <p>Train Number:{data.trainNumber}</p>
+    </div>
     </div>
   );
 }

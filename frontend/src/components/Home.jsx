@@ -5,59 +5,96 @@ function Home() {
 
   const clickHandler = (e) => {
     e.preventDefault();
-    // alert("Clicked!");
     navigate(`/details`);
   };
 
   const checkHandler = (e) => {
     e.preventDefault();
-    // alert("Clicked!");
     navigate(`/checkTicket`);
   };
 
   const signupHandler = (e) => {
     e.preventDefault();
-    // alert("Clicked!");
     navigate(`/Signup`);
   };
 
   const loginHandler = (e) => {
     e.preventDefault();
-    // alert("Clicked!");
-    navigate(`/Login`);
+    navigate(`/login`);
   };
 
   return (
     <div>
-      This is Home Page
-      <button
-        type="button"
-        className="list-group-item list-group-item-action active"
-        onClick={clickHandler}
+      <nav className="navbar navbar-expand-lg navbar-light">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            <img
+              src={process.env.PUBLIC_URL + "/Images/newlogo.png"}
+              alt="Your Logo"
+              width="50"
+              height="50"
+              className="d-inline-block align-text-top"
+            />
+          </a>
+          <div className=" navbar-collapse justify-content-center">
+            <ul className="navbar-nav ">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={checkHandler}>
+                  Check Tickets
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  About
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div
+            className=" navbar-collapse justify-content-end"
+            style={{ flexGrow: 0 }}
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={loginHandler}>
+                  Login
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={signupHandler}>
+                  Signup
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div className="text-center" style={{ marginTop: "70px" }}>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={clickHandler}
+        >
+          Get Train Details
+        </button>
+      </div>
+      <div
+        className="text-center"
+        style={{ fontWeight: "bold", fontSize: "20px", marginTop: "235px",color:"ButtonShadow" }}
       >
-        Get Full Details
-      </button>
-      <button
-        type="button"
-        className="list-group-item list-group-item-action active"
-        onClick={checkHandler}
-      >
-        Check Ticket
-      </button>
-      <button
-        type="button"
-        className="list-group-item list-group-item-action active"
-        onClick={signupHandler}
-      >
-        Signup
-      </button>
-      <button
-        type="button"
-        className="list-group-item list-group-item-action active"
-        onClick={loginHandler}
-      >
-        Login
-      </button>
+        <p>A journey of a thousand miles begins with a single step</p>
+      </div>
     </div>
   );
 }
