@@ -1,5 +1,7 @@
 package com.shlok.demo.entities;
 
+import javax.validation.constraints.Email;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,19 +12,20 @@ public class Users {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String eMaildId;
-	private String passwrd;
+	
+	@Email
+	private String email;
+	private String password;
 	private boolean isLoggedIn;
-	
-	
-	
-	public Users(String eMaildId, String passwrd, boolean isLoggedIn) {
+	private boolean isAdmin;
+	public Users(long id, @Email String email, String password, boolean isLoggedIn, boolean isAdmin) {
 		super();
-		this.eMaildId = eMaildId;
-		this.passwrd = passwrd;
+		this.id = id;
+		this.email = email;
+		this.password = password;
 		this.isLoggedIn = isLoggedIn;
+		this.isAdmin = isAdmin;
 	}
-	
 	public Users() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -33,17 +36,17 @@ public class Users {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String geteMaildId() {
-		return eMaildId;
+	public String getEmail() {
+		return email;
 	}
-	public void seteMaildId(String eMaildId) {
-		this.eMaildId = eMaildId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getPasswrd() {
-		return passwrd;
+	public String getPassword() {
+		return password;
 	}
-	public void setPasswrd(String passwrd) {
-		this.passwrd = passwrd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public boolean isLoggedIn() {
 		return isLoggedIn;
@@ -51,11 +54,18 @@ public class Users {
 	public void setLoggedIn(boolean isLoggedIn) {
 		this.isLoggedIn = isLoggedIn;
 	}
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	@Override
 	public String toString() {
-		return "Users [id=" + id + ", eMaildId=" + eMaildId + ", passwrd=" + passwrd + ", isLoggedIn=" + isLoggedIn
-				+ "]";
+		return "Users [id=" + id + ", email=" + email + ", password=" + password + ", isLoggedIn=" + isLoggedIn
+				+ ", isAdmin=" + isAdmin + "]";
 	}
+	
 	
 	
 

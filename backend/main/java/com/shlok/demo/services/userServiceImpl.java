@@ -14,7 +14,6 @@ public class userServiceImpl implements userService {
 	@Autowired
 	private UserDao usd;
 	
-	
 	public userServiceImpl() {
 		
 	}
@@ -36,5 +35,37 @@ public class userServiceImpl implements userService {
 		System.out.println(us);
 		return us;
 	}
+
+	@Override
+	public Users findByEmail(Users us) {
+		// TODO Auto-generated method stub
+//		System.out.println(us.getEmail());
+		Users currUser =  usd.findByEmail(us.getEmail());
+//		System.out.println(us.getPassword() + " " + currUser.getPassword());
+		
+		if(us.getPassword().equals(currUser.getPassword())) {
+//			System.out.println("matched");
+			currUser.setLoggedIn(true);
+			usd.save(currUser);
+			return currUser;
+		}
+		
+		return null;
+	}
+
+	@Override
+	public Users logout(long userId) {
+		// TODO Auto-generated method stub
+		Users user=usd.getOne(userId);
+		user.setLoggedIn(false);
+		usd.save(user);
+		System.out.println(user.isLoggedIn());
+		return user;
+	}
+
+	
+
+	
+	
 
 }

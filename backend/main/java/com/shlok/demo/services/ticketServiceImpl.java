@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.shlok.demo.dao.TicketDao;
 import com.shlok.demo.dao.TrainDao;
+import com.shlok.demo.dao.UserDao;
 import com.shlok.demo.entities.Tickets;
 import com.shlok.demo.entities.Trains;
+import com.shlok.demo.entities.Users;
 
 @Service
 public class ticketServiceImpl implements ticketService {
@@ -18,6 +20,9 @@ public class ticketServiceImpl implements ticketService {
 	
 	@Autowired
 	private TrainDao tda;
+	
+	@Autowired
+	private UserDao uda;
 	
 	public ticketServiceImpl() {
 		
@@ -37,8 +42,13 @@ public class ticketServiceImpl implements ticketService {
 	}
 
 	@Override
-	public Tickets addTickets(Tickets ts) {
+	public Tickets addTickets(Tickets ts, long userId) {
 		// TODO Auto-generated method stub
+		
+		// validate User
+		Users currUser = uda.getOne(userId);
+		if(!currUser.isLoggedIn())
+			return null;
 		
 		long tn = ts.getTrainNumber();
 		@SuppressWarnings("deprecation")

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shlok.demo.dao.TrainDao;
+import com.shlok.demo.dao.UserDao;
 import com.shlok.demo.entities.Trains;
+import com.shlok.demo.entities.Users;
 
 @Service
 public class trainServiceImpl implements trainServices {
@@ -14,6 +16,9 @@ public class trainServiceImpl implements trainServices {
 	
 	@Autowired
 	private TrainDao tda;
+	
+	@Autowired
+	private UserDao uda;
 	
 	public trainServiceImpl() {
 //		list=new ArrayList<>();
@@ -40,7 +45,13 @@ public class trainServiceImpl implements trainServices {
 
 
 	@Override
-	public Trains addTrain(Trains tr) {
+	public Trains addTrain(Trains tr,long userId) {
+		// validate User
+		Users currUser = uda.getOne(userId);
+		if(!(currUser.isLoggedIn() && currUser.isAdmin()))
+			return null;
+				
+				
 		tda.save(tr);
 		
 		return tr;

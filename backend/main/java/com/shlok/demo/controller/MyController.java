@@ -37,9 +37,9 @@ public class MyController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@PostMapping("/addingTrain")
-	public Trains addTrain(@RequestBody Trains tr) {
-		return this.ts.addTrain(tr);
+	@PostMapping("/addingTrain/{userId}")
+	public Trains addTrain(@RequestBody Trains tr, @PathVariable long userId) {
+		return this.ts.addTrain(tr,userId);
 	}
 	
 	
@@ -62,9 +62,10 @@ public class MyController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@PostMapping("/addTicket")
-	public Tickets addTickets(@RequestBody Tickets ts) {
-		return this.ticketSer.addTickets(ts);
+	@PostMapping("/addTicket/{userId}")
+	public Tickets addTickets(@RequestBody Tickets ts, @PathVariable long userId) {
+		System.out.print(userId);
+		return this.ticketSer.addTickets(ts, userId);
 	}
 	
 	
@@ -73,21 +74,37 @@ public class MyController {
 	@Autowired
 	private userService user;
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/user")
 	public List<Users> getUsers() {
 		return this.user.getUsers();
 	}
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/user/{uId}")
 	public Users getUser(@PathVariable long uId) {
 		return this.user.getUser(uId);
 	}
 	
-	
+	@CrossOrigin(origins = "*")
 	@PostMapping("/addUser")
 	public Users addUser(@RequestBody Users us) {
 		System.out.println(us);
+		us.setLoggedIn(false);
+		us.setAdmin(false);
 		return this.user.addUser(us);
+	}
+	
+	@CrossOrigin(origins = "*")
+	@PostMapping("/user/login")
+	public Users findByEmail(@RequestBody Users us) {
+		return this.user.findByEmail(us);
+	}
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/logout/{userId}")
+	public Users logout(@PathVariable long userId) {
+		return this.user.logout(userId);
 	}
 
 }

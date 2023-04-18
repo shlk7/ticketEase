@@ -10,7 +10,7 @@ public interface ticketService {
 
 	Tickets getTickets(long tickesId);
 
-	Tickets addTickets(Tickets ts);
+	Tickets addTickets(Tickets ts, long userId);
 	
 	
 

@@ -11,7 +11,7 @@ public interface trainServices {
 
 	Trains getTrain(long trainId);
 
-	Trains addTrain(Trains tr);
+	Trains addTrain(Trains tr,long userId);
 
 	
 
