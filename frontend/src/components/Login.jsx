@@ -14,14 +14,20 @@ function Home() {
     // alert("Clicked!");
 
     axios
-      .post("http://localhost:9090/user", {
-        eMaildId: eMaildId,
-        passwrd: passwrd,
+      .post("http://localhost:9090/user/login", {
+        email: eMaildId,
+        password: passwrd,
       })
       .then((response) => {
-        console.log(response);
-
-        navigate("/login");
+        if (Object.keys(response.data).length === 0) {
+          alert("Login Unsuccessfull");
+          navigate(`/login`);
+        } else {
+          console.log(response.data);
+          localStorage.setItem("user", JSON.stringify(response.data));
+          // console.log("here", JSON.parse(localStorage.getItem("user")));
+          navigate("/");
+        }
       });
   };
 
@@ -45,7 +51,7 @@ function Home() {
       />
       <p
         className="text-center "
-        style={{ fontWeight: "bold", fontSize: "27px",color:"#2B547E" }}
+        style={{ fontWeight: "bold", fontSize: "27px", color: "#2B547E" }}
       >
         WELCOME BACK!
       </p>

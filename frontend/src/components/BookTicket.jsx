@@ -15,9 +15,11 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // alert("Clicked!");
+    const currUser = JSON.parse(localStorage.getItem("user"));
+    console.log(currUser);
 
     axios
-      .post("http://localhost:9090/addTicket", {
+      .post(`http://localhost:9090/addTicket/${currUser.id}`, {
         pnr: pnr,
         personName: personName,
         personNumber: personNumber,

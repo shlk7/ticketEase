@@ -8,6 +8,7 @@ function OneDetail(props) {
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState({});
+  const [user, setUser] = useState({});
 
   const clickHandler = (e) => {
     e.preventDefault();
@@ -16,6 +17,11 @@ function OneDetail(props) {
   };
 
   useEffect(() => {
+    if (JSON.parse(localStorage.getItem("user")))
+      setUser(JSON.parse(localStorage.getItem("user")));
+
+    console.log(user.admin);
+
     axios
       .get(`http://localhost:9090/trains/${id}`)
       .then((res) => {
@@ -46,6 +52,14 @@ function OneDetail(props) {
               onClick={clickHandler}
             >
               Book Ticket
+            </button>
+          </div>
+        )}
+        <br></br>
+        {user.admin && (
+          <div className="text-center">
+            <button type="button" className="btn btn-primary">
+              Delete Train
             </button>
           </div>
         )}

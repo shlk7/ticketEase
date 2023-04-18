@@ -13,19 +13,22 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // alert("Clicked!");
+    const currUser = JSON.parse(localStorage.getItem("user"));
+    console.log(currUser);
 
     axios
-      .post("http://localhost:9090/addingTrain", {
+      .post(`http://localhost:9090/addingTrain/${currUser.id}`, {
         id: id,
         name: name,
         fromwhere: fromwhere,
         whereto: whereto,
       })
       .then((response) => {
-        console.log(response);
-
-        navigate("/details");
+        if (Object.keys(response.data).length === 0) {
+          alert("Can't create train");
+        } else {
+          navigate("/details");
+        }
       });
   };
 
@@ -70,9 +73,9 @@ function Home() {
         </Form.Group>
 
         <div className="text-center">
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
         </div>
       </Form>
     </div>

@@ -8,28 +8,38 @@ function Home() {
 
   const [eMaildId, seteMaildId] = useState();
   const [passwrd, setpasswrd] = useState();
+  const [confirmPasswrd, setconfirmPasswrd] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // alert("Clicked!");
 
-    axios
-      .post("http://localhost:9090/addUser", {
-        eMaildId: eMaildId,
-        passwrd: passwrd,
-      })
-      .then((response) => {
-        console.log(response);
+    if (passwrd !== "" && passwrd === confirmPasswrd) {
+      axios
+        .post("http://localhost:9090/addUser", {
+          email: eMaildId,
+          password: passwrd,
+        })
+        .then((response) => {
+          alert("Successful signup");
+          console.log(response);
 
-        navigate("/login");
-      });
+          navigate("/login");
+        });
+    } else {
+      alert("Password didn't match. Try again");
+    }
   };
 
   return (
     <Container>
       <div
         className="card mx-auto"
-        style={{ width: "18rem",border: "none", marginTop: "10rem",backgroundColor: "transparent" }}
+        style={{
+          width: "18rem",
+          border: "none",
+          marginTop: "10rem",
+          backgroundColor: "transparent",
+        }}
       >
         <img
           src={
@@ -39,7 +49,10 @@ function Home() {
           className="card-img-top"
           alt="..."
         />
-        <p className="text-center" style={{ fontWeight: "bold", color: "ButtonShadow" }}>
+        <p
+          className="text-center"
+          style={{ fontWeight: "bold", color: "ButtonShadow" }}
+        >
           CREATE ACCOUNT
         </p>
         <div className="card-body">
@@ -55,9 +68,17 @@ function Home() {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                type="text"
+                type="password"
                 placeholder="Enter Your Password"
                 onChange={(e) => setpasswrd(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Confirm Your Password"
+                onChange={(e) => setconfirmPasswrd(e.target.value)}
               />
             </Form.Group>
 

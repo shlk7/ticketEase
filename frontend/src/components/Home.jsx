@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Home() {
   const navigate = useNavigate();
@@ -21,6 +22,22 @@ function Home() {
   const loginHandler = (e) => {
     e.preventDefault();
     navigate(`/login`);
+  };
+
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    const currUser = JSON.parse(localStorage.getItem("user"));
+    localStorage.removeItem("user");
+
+    axios
+      .get(`http://localhost:9090/logout/${currUser.id}`)
+      .then((res) => {
+        alert("logged out");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    navigate(`/`);
   };
 
   const userDetailsHandler = (e) => {
@@ -80,10 +97,14 @@ function Home() {
                   Signup
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#" onClick={userDetailsHandler}>
-                  User Details
-                </a>
+              <li>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={logoutHandler}
+                >
+                  Logout
+                </button>
               </li>
             </ul>
           </div>
@@ -99,6 +120,17 @@ function Home() {
           Get Train Details
         </button>
       </div>
+
+      <div className="text-center" style={{ marginTop: "70px" }}>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={userDetailsHandler}
+        >
+          User Details
+        </button>
+      </div>
+
       <div
         className="text-center"
         style={{
