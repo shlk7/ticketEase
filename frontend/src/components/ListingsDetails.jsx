@@ -33,14 +33,15 @@ function ListingsDetails(props) {
         {data.map((item) => (
           <ProductDetails {...item} key={item.id} />
         ))}
-
-        <button
-          type="button"
-          className="list-group-item list-group-item-action active"
-          onClick={addDeatilHandler}
-        >
-          Add new Deatil
-        </button>
+        <div className="text-center">
+          <button
+            type="button"
+            className="btn btn-primary "
+            onClick={addDeatilHandler}
+          >
+            Add new Deatil
+          </button>
+        </div>
       </Container>
     </div>
   );

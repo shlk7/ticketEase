@@ -10,6 +10,7 @@ import TicketDetails from './components/TicketDetails';
 import CheckTicket from "./components/CheckTicket";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import UserDetails from './components/UserDetails';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/checkTicket" element={<CheckTicket />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/userDetails" element={<UserDetails />} />
       </Routes>
     </BrowserRouter>
   );

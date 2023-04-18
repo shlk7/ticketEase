@@ -23,6 +23,11 @@ function Home() {
     navigate(`/login`);
   };
 
+  const userDetailsHandler = (e) => {
+    e.preventDefault();
+    navigate(`/userDetails`);
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -75,6 +80,11 @@ function Home() {
                   Signup
                 </a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={userDetailsHandler}>
+                  User Details
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -91,7 +101,12 @@ function Home() {
       </div>
       <div
         className="text-center"
-        style={{ fontWeight: "bold", fontSize: "20px", marginTop: "235px",color:"ButtonShadow" }}
+        style={{
+          fontWeight: "bold",
+          fontSize: "20px",
+          marginTop: "235px",
+          color: "ButtonShadow",
+        }}
       >
         <p>A journey of a thousand miles begins with a single step</p>
       </div>

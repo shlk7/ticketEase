@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 
@@ -20,7 +20,7 @@ function Home() {
         id: id,
         name: name,
         fromwhere: fromwhere,
-        whereto: whereto
+        whereto: whereto,
       })
       .then((response) => {
         console.log(response);
@@ -30,7 +30,10 @@ function Home() {
   };
 
   return (
-    <Container>
+    <div
+      className="mx-auto card text-info bg-dark mb-3"
+      style={{ width: "60rem", marginTop: "10rem" }}
+    >
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Id</Form.Label>
@@ -66,11 +69,13 @@ function Home() {
           />
         </Form.Group>
 
+        <div className="text-center">
         <Button variant="primary" type="submit">
           Submit
         </Button>
+        </div>
       </Form>
-    </Container>
+    </div>
   );
 }
 

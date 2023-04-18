@@ -13,7 +13,7 @@ function ProductDetails(item) {
 
   return (
     <div className="row row-cols-3 text-center">
-      <div className="col mx-auto" style={{ marginTop: "2rem" }}>
+      <div className="col mx-auto" style={{ width: "61%", marginTop: "2rem" }}>
         <ul className="list-group bg-dark mb-3">
           <li className="list-group-item text-info bg-dark ">Id:{item.id}</li>
           <li className="list-group-item text-info bg-dark">
