@@ -13,6 +13,8 @@ public interface trainServices {
 
 	Trains addTrain(Trains tr,long userId);
 
+	void deleteTrain(long trainId);
+
 	
 
 }

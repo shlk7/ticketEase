@@ -44,6 +44,7 @@ public class trainServiceImpl implements trainServices {
 	}
 
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Trains addTrain(Trains tr,long userId) {
 		// validate User
@@ -55,6 +56,15 @@ public class trainServiceImpl implements trainServices {
 		tda.save(tr);
 		
 		return tr;
+	}
+
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void deleteTrain(long trainId) {
+		// TODO Auto-generated method stub
+		Trains entity=tda.getOne(trainId);
+		tda.delete(entity);
 	}
 
 
