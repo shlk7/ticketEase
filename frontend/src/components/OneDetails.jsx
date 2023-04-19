@@ -12,20 +12,20 @@ function OneDetail(props) {
 
   const clickHandler = (e) => {
     e.preventDefault();
-    // alert("Clicked!");
-    navigate(`/bookTicket/${data.id}`);
+
+    if (Object.keys(user).length === 0) {
+      alert("Please login to continue");
+      navigate(`/login`);
+    } else navigate(`/bookTicket/${data.id}`);
   };
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("user")))
       setUser(JSON.parse(localStorage.getItem("user")));
 
-    console.log(user.admin);
-
     axios
       .get(`http://localhost:9090/trains/${id}`)
       .then((res) => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch((err) => {
@@ -47,7 +47,7 @@ function OneDetail(props) {
       .catch((err) => {
         console.log(err);
       });
-      navigate(`/details`)
+    navigate(`/details`);
   };
 
   return (
