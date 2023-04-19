@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shlok.demo.controller.MyCustomException;
 import com.shlok.demo.dao.TicketDao;
 import com.shlok.demo.dao.TrainDao;
 import com.shlok.demo.dao.UserDao;
@@ -48,14 +49,14 @@ public class ticketServiceImpl implements ticketService {
 		// validate User
 		Users currUser = uda.getOne(userId);
 		if(!currUser.isLoggedIn())
-			return null;
+			throw new MyCustomException("User not logged In!");
 		
 		long tn = ts.getTrainNumber();
 		@SuppressWarnings("deprecation")
 		Trains tr = tda.getOne(tn);
 		
 		if(tr.getAvailability() == 0)
-			return null;
+			throw new MyCustomException("Seats not Available!");
 		else {
 			tr.setAvailability(tr.getAvailability()-1);
 			tda.save(tr);

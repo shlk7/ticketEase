@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,16 +73,22 @@ public class MyController {
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("tickets/{tickesId}")
-	public Tickets getTickets(@PathVariable long tickesId) {
+	public ResponseEntity getTickets(@PathVariable long tickesId) {
 //		System.out.print(tickesId);
-		return this.ticketSer.getTickets(tickesId);
+		return new ResponseEntity(this.ticketSer.getTickets(tickesId), HttpStatus.OK);
 	}
 	
 	@CrossOrigin(origins = "*")
 	@PostMapping("/addTicket/{userId}")
-	public Tickets addTickets(@RequestBody Tickets ts, @PathVariable long userId) {
+	public ResponseEntity addTickets(@RequestBody Tickets ts, @PathVariable long userId) throws MyCustomException{
 		System.out.print(userId);
-		return this.ticketSer.addTickets(ts, userId);
+		try {
+			Tickets tic =  this.ticketSer.addTickets(ts, userId);
+			return new ResponseEntity(tic, HttpStatus.OK);
+		}
+		catch(MyCustomException my) {
+			return new ResponseEntity(my.getMessage(), HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	
@@ -122,5 +129,4 @@ public class MyController {
 	public Users logout(@PathVariable long userId) {
 		return this.user.logout(userId);
 	}
-
 }
