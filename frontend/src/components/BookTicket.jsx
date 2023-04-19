@@ -28,11 +28,16 @@ function Home() {
       .then((response) => {
         console.log(response.data);
         console.log(Object.keys(response.data).length);
-        if (Object.keys(response.data).length === 0) {
-          alert("Can't book ticket");
-          navigate(`/details/${id}`);
+        if (Object.keys(response.data.currUser.loggedIn) === true) {
+          if (Object.keys(response.data).length === 0) {
+            alert("Can't book ticket,Tickets are not available");
+            navigate(`/details/${id}`);
+          } else {
+            navigate(`/Successful/${response.data.pnr}`);
+          }
         } else {
-          navigate(`/Successful/${response.data.pnr}`);
+          alert("Not Logged IN, Please Login to Continue");
+          navigate(`/login`);
         }
       });
   };

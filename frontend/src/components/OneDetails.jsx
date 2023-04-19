@@ -33,6 +33,23 @@ function OneDetail(props) {
       });
   }, [id]);
 
+  const deleteHandler = (e) => {
+    e.preventDefault();
+
+    axios
+      .delete(`http://localhost:9090/deleteTrain/${id}`)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+        alert("Post deleted!");
+        setData(null);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      navigate(`/details`)
+  };
+
   return (
     <div
       className="mx-auto card text-info bg-dark mb-3"
@@ -58,7 +75,11 @@ function OneDetail(props) {
         <br></br>
         {user.admin && (
           <div className="text-center">
-            <button type="button" className="btn btn-primary">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={deleteHandler}
+            >
               Delete Train
             </button>
           </div>
