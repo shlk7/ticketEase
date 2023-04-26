@@ -28,6 +28,8 @@ function Home() {
       .then((response) => {
         console.log(response);
         console.log(Object.keys(response.data).length);
+        alert("Congratualtions, your ticket has been booked Successfully ");
+        navigate("/");
       });
   };
 
